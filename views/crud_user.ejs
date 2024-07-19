@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USUARIOS</title>
+</head>
+<body>
+    <h1>USUARIOS</h1>
+    <table border="1px">
+        <form action="/crud_user" method="post">
+            <input type="text" id="txt_usu" name="txt_usu" placeholder="Usuario">
+            <input type="text" id="txt_per" name="txt_per" placeholder="Nombre de Persona">
+            <button type="submit" id="btm_create" name="btm_create" value="create">Crear</button>
+        </form>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Usuario</th>
+                <th>Nombre de Persona</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% result.forEach((user) => { %>
+            <tr>
+                <td><%= user.userCod %></td>
+                <td><%= user.userUsu %></td>
+                <td><%= user.userPerCod %></td>
+                <td>
+                    <button type="button" class="btn-update" data-id="<%= user.userCod %>" data-context="user" data-usu="<%= user.userUsu %>" data-per="<%= user.userPerCod %>">Actualizar</button>
+                    <form action="/crud_user" method="post" style="display:inline;">
+                        <input type="hidden" name="txt_id" value="<%= user.userCod %>">
+                        <button type="submit" id="btm_delete" name="btm_delete" value="delete">Borrar</button>
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+
+</body>
+</html>
